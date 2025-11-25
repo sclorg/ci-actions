@@ -75,7 +75,7 @@ jobs:
     uses: ./.github/workflows/run-tests.yml
     with:
       version: ${{ inputs.versions }}
-      os_test: '[ "fedora", "rhel8", "rhel9", "rhel10", "c9s", "c10s" ]'
+      os_test: '[ "fedora", "rhel8", "rhel9", "rhel10", "rhel9-unsubscribed", "rhel10-unsubscribed", "c9s", "c10s" ]'
       test_case: ${{ needs.get_test_cases.outputs.cases }}
     secrets: inherit
 
