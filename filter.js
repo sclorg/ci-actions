@@ -13,7 +13,7 @@ if (!repoArg || !versionsArg) {
     printUsage()
 }
 
-const distros = new Set(["fedora", "rhel8", "rhel9", "rhel10", "c9s", "c10s"])
+const distros = new Set(["fedora", "rhel8", "rhel9", "rhel10", "rhel11", "c9s", "c10s", "c11s"])
 
 let matrix = []
 
