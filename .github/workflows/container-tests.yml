@@ -77,8 +77,11 @@ jobs:
 
       - id: filter_matrix
         run: |
+          node ./ci-actions/filter.js '${{ github.workspace }}' '${{ inputs.versions }}' 2>&1
           RES=$(node ./ci-actions/filter.js '${{ github.workspace }}' '${{ inputs.versions }}' 2>&1)
-          if [ $? -ne 0 ]; then
+          CODE=$?
+          if [ $CODE -ne 0 ]; then
+            echo $CODE
             echo "$RES"
             exit 1
           fi
