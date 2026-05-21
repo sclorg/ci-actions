@@ -63,6 +63,9 @@ jobs:
 
       - name: "Checkout container repo"
         uses: actions/checkout@v6
+        with:
+          ref: "refs/pull/${{ github.event.issue.number }}/head"
+          submodules: true
 
       - name: "Checkout ci-actions"
         uses: actions/checkout@v6
