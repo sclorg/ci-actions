@@ -29,8 +29,13 @@ if (!Array.isArray(versions)) {
 
 // wait for all iterations of loop to finish
 await Promise.all(versions.map(async version => {
-    const files = await fs.readdir(path.join(repoArg, version))
-
+    let files = []
+    try {
+        files = await fs.readdir(path.join(repoArg, version))
+    } catch (err) {
+        // if a directory for a version doesn't exist, we don't need to test anything there
+        // aka every distro here is added to the exclude matrix
+    }
     const presentDistros = new Set(files.filter(name => name.startsWith("Dockerfile."))
         .map(name => name.split(".")[1]))
     const excludedDistros = new Set(files.filter(name => name.startsWith(".exclude-"))
